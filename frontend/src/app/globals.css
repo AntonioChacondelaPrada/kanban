@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --accent-yellow: #ecad0a;
+  --blue-primary: #209dd7;
+  --purple-secondary: #753991;
+  --dark-navy: #032147;
+  --gray-text: #888888;
+  --background: #f6f9fc;
+  --foreground: #032147;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  margin: 0;
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.page-shell {
+  min-height: 100dvh;
+  padding: 1.5rem;
+}
+
+.topbar {
+  margin: 0 auto 1.5rem;
+  max-width: 1600px;
+}
+
+.topbar h1 {
+  margin: 0;
+  color: var(--dark-navy);
+  font-size: 1.9rem;
+}
+
+.topbar p {
+  margin: 0.35rem 0 0;
+  color: var(--gray-text);
+}
+
+.board-grid {
+  margin: 0 auto;
+  max-width: 1600px;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.column-panel {
+  background: #ffffff;
+  border: 1px solid #dbe6f2;
+  border-top: 4px solid var(--blue-primary);
+  border-radius: 16px;
+  padding: 0.8rem;
+  box-shadow: 0 10px 26px rgba(3, 33, 71, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.column-title-form input {
+  width: 100%;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--dark-navy);
+  padding: 0.45rem 0.5rem;
+}
+
+.column-title-form input:focus-visible {
+  outline: none;
+  border-color: var(--accent-yellow);
+  box-shadow: 0 0 0 3px rgba(236, 173, 10, 0.2);
+}
+
+.card-stack {
+  min-height: 14rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.kanban-card {
+  background: #ffffff;
+  border: 1px solid #d9e3ee;
+  border-left: 3px solid var(--accent-yellow);
+  border-radius: 12px;
+  padding: 0.7rem;
+  display: grid;
+  gap: 0.45rem;
+  cursor: grab;
+}
+
+.kanban-card:active {
+  cursor: grabbing;
+}
+
+.drag-overlay-card {
+  width: 260px;
+  box-shadow: 0 16px 34px rgba(3, 33, 71, 0.2);
+  transform: rotate(2deg);
+}
+
+.kanban-card h3 {
+  margin: 0;
+  color: var(--dark-navy);
+  font-size: 0.98rem;
+}
+
+.kanban-card p {
+  margin: 0;
+  color: var(--gray-text);
+  font-size: 0.87rem;
+}
+
+.delete-button {
+  border: 0;
+  justify-self: end;
+  border-radius: 8px;
+  background: #f5eff8;
+  color: var(--purple-secondary);
+  padding: 0.3rem 0.65rem;
+  cursor: pointer;
+}
+
+.add-card-form {
+  display: grid;
+  gap: 0.5rem;
+  border-top: 1px solid #e8edf5;
+  padding-top: 0.7rem;
+}
+
+.add-card-form input,
+.add-card-form textarea {
+  border: 1px solid #d5dfeb;
+  border-radius: 10px;
+  padding: 0.45rem 0.55rem;
+  font: inherit;
+  color: var(--dark-navy);
+}
+
+.add-card-form textarea {
+  min-height: 3.6rem;
+  resize: vertical;
+}
+
+.add-card-form input:focus-visible,
+.add-card-form textarea:focus-visible,
+.add-card-form button:focus-visible,
+.delete-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(32, 157, 215, 0.25);
+}
+
+.add-card-form button {
+  border: 0;
+  border-radius: 10px;
+  background: var(--purple-secondary);
+  color: #ffffff;
+  padding: 0.55rem 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.column-drop-zone {
+  min-height: 2.5rem;
+  border: 1px dashed #d3deea;
+  border-radius: 10px;
+}
+
+@media (max-width: 1320px) {
+  .board-grid {
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 980px) {
+  .board-grid {
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+  }
+}
+
+@media (max-width: 660px) {
+  .board-grid {
+    grid-template-columns: 1fr;
+  }
+}
